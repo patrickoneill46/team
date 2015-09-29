@@ -22,7 +22,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new LocalStrategy(function(username, password, done){
-    console.log('authenticating request...');
     User.findOne({
     }, function(err,user){
         console.log(user);
@@ -70,34 +69,19 @@ app.post('/login', function(req, res, next){
     next();
 });
 
-//app.post('/login', passport.authenticate('local', {
-//    failureRedirect: '/signin.html',
-//    successRedirect: '/home.html'
-//}));
+app.post('/login', passport.authenticate('local', {
+    failureRedirect: '/signin.html',
+    successRedirect: '/home.html'
+}));
 
-app.post('/login',
-  passport.authenticate('local', {
-    successRedirect: '/loginSuccess',
-    failureRedirect: '/loginFailure'
-  })
-);
-
-app.get('/loginFailure', function(req, res, next) {
-  res.send('Failed to authenticate');
+app.use(function(req, res, next) {
+   if(req.isAuthenticated()){
+       next();
+   } else {
+       console.log('redirecting to sigin in');
+       res.redirect('signin');
+   }
 });
-
-app.get('/loginSuccess', function(req, res, next) {
-  res.send('Successfully authenticated');
-});
-
-//app.use(function(req, res, next) {
-//   if(req.isAuthenticated()){
-//       next();
-//   } else {
-//       console.log('redirecting to sigin in');
-//       res.redirect('signin');
-//   }
-//});
 
 app.use(express.static(__dirname + '/../app/'));
 app.use('/bower_components', express.static(__dirname + '/../bower_components/'));
@@ -106,8 +90,6 @@ app.get('/', function (req, res) {
   console.log('is authenticated');
   res.sendFile('home.html');
 });
-
-
 
 app.listen(3000);
 
