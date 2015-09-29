@@ -1,0 +1,17 @@
+{
+  "name": "TEam",
+  "version": "1.0.0",
+  "description": "Team app",
+  "main": "server/app.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server/app.js"
+  },
+  "author": "Patrick O'Neill",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "mongoose": "^4.1.9",
+    "passport-local-mongoose": "^3.0.0"
+  }
+}
