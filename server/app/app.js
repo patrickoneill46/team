@@ -7,7 +7,8 @@ var bodyParser = require('body-parser'),
     path = require('path'),
     session = require('express-session');
 
-var User = require('./models/user');
+var User = require('./models/user'),
+    staticConfig = require('./config/static');
 
 mongoose.connect('mongodb://localhost/MyDatabase');
 
@@ -60,7 +61,7 @@ passport.deserializeUser(function(user, done){
 });
 
 app.get('/signin', function(req, res){
-   res.sendFile(path.resolve(__dirname + '/../app/signin.html'));
+   res.sendFile(path.resolve(__dirname + staticConfig.appDirectory + '/signin.html'));
 });
 
 app.post('/login', function(req, res, next){
@@ -83,7 +84,7 @@ app.use(function(req, res, next) {
    }
 });
 
-app.use(express.static(__dirname + '/../app/'));
+app.use(express.static(__dirname + staticConfig.appDirectory));
 app.use('/bower_components', express.static(__dirname + '/../bower_components/'));
 
 app.get('/', function (req, res) {

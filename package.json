@@ -5,7 +5,7 @@
   "main": "server/app.js",
   "scripts": {
     "test": "test",
-    "start": "node server/app.js"
+    "start": "node server/app/app.js"
   },
   "author": "Patrick O'Neill",
   "license": "ISC",
