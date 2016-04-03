@@ -2,8 +2,30 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var User = new Schema({
-    username: String,
-    password: String
+    username: {
+        type: String,
+        required: true,
+        validate: {
+            validator: function(value) {
+                return /([A-Za-z])/g.test(value);
+            },
+            message: 'Username must contain alpha characters string'
+        }
+    },
+    password: {
+        type: String,
+        required: true,
+        validate: {
+            validator: function(value) {
+                return /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/g.test(value);
+            },
+            message: 'password must have at least one number and one character'
+        }
+    },
+    position: {
+        type: String,
+        enum: ['Loosehead', 'Hooker', 'Tighthead', 'Second row', 'Back row', 'Scrum half', 'Out half', 'Centre', 'Wing', 'Full back']
+    }
 }, {
     collection: 'userInfo'
 });
