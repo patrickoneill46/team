@@ -5,6 +5,7 @@ var bodyParser = require('body-parser'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     path = require('path'),
+    routes = require('./routes'),
     session = require('express-session');
 
 var User = require('./models/user'),
@@ -56,48 +57,7 @@ passport.deserializeUser(function(user, done){
     done(null, user);
 });
 
-app.get('/signin', function(req, res){
-   res.sendFile(path.resolve(__dirname + staticConfig.appDirectory + '/signin.html'));
-});
-
-app.get('/create-account', function(req, res){
-   res.sendFile(path.resolve(__dirname + staticConfig.appDirectory + '/createaccount.html'));
-});
-
-app.get('/favicon.ico', function(req, res){
-
-});
-
-app.post('/create-account', function(req, res){
-
-    User.register(new User({
-        username: req.body.username,
-        password: req.body.password
-    }), req.body.password, function(err, createdUser) {
-
-        if(err) {
-            console.error(err)
-        }
-
-        passport.authenticate('local')( req, res, function() {
-            res.redirect('home.html');
-        });
-    });
-});
-
-app.post('/login', passport.authenticate('local', {
-    failureRedirect: '/signin',
-    successRedirect: '/home.html'
-}));
-
-app.use('/', function(req, res, next) {
-   if(req.isAuthenticated()){
-       next();
-   } else {
-       console.log('redirecting to sigin in');
-       res.redirect('signin');
-   }
-});
+require('./routes')(app);
 
 app.use(express.static(__dirname + staticConfig.appDirectory));
 app.use('/bower_components', express.static(__dirname + '/../bower_components/'));
