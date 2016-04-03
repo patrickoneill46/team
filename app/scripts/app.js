@@ -13,5 +13,20 @@ angular
     'ngRoute'
   ])
   .config(function ($routeProvider) {
-
+    $routeProvider
+      .when('/', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
+      .when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl'
+      })
+      .when('/team', {
+        templateUrl: 'views/team.html',
+        controller: 'TeamCtrl'
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
   });
