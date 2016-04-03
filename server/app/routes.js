@@ -6,12 +6,16 @@ var mongoose = require('mongoose'),
 
 module.exports = function(app, User) {
 
+    function getStaticPage(filePath){
+        return path.resolve(__dirname + staticConfig.appDirectory + filePath);
+    }
+
     app.get('/signin', function(req, res){
-       res.sendFile(path.resolve(__dirname + staticConfig.appDirectory + '/signin.html'));
+       res.sendFile(getStaticPage('/signin.html'));
     });
 
     app.get('/create-account', function(req, res){
-       res.sendFile(path.resolve(__dirname + staticConfig.appDirectory + '/createaccount.html'));
+       res.sendFile(getStaticPage('/createaccount.html'));
     });
 
     app.get('/favicon.ico', function(req, res){
@@ -37,7 +41,7 @@ module.exports = function(app, User) {
 
     app.post('/login', passport.authenticate('local', {
         failureRedirect: '/signin',
-        successRedirect: '/home.html'
+        successRedirect: '/'
     }));
 
     app.use('/', function(req, res, next) {
@@ -47,5 +51,9 @@ module.exports = function(app, User) {
            console.log('redirecting to sigin in');
            res.redirect('signin');
        }
+    });
+
+    app.get('/', function(req, res) {
+        res.sendFile(getStaticPage('home.html'));
     });
 };

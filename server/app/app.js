@@ -21,8 +21,8 @@ app.use(session({secret: 'team', resave: true, saveUninitialized: true }));
 require('./authentication')(app, User);
 require('./routes')(app, User);
 
+app.use('/bower_components', express.static(__dirname + '/../../bower_components/'));
 app.use(express.static(__dirname + staticConfig.appDirectory));
-app.use('/bower_components', express.static(__dirname + '/../bower_components/'));
 
 app.get('/', function (req, res) {
   console.log('is authenticated');
