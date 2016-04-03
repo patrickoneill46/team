@@ -1,4 +1,5 @@
 var mongoose = require('mongoose'),
+    passportLocalMongoose = require('passport-local-mongoose'),
     Schema = mongoose.Schema;
 
 var User = new Schema({
@@ -29,5 +30,7 @@ var User = new Schema({
 }, {
     collection: 'userInfo'
 });
+
+User.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('userInfo', User);

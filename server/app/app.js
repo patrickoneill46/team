@@ -70,16 +70,18 @@ app.get('/favicon.ico', function(req, res){
 
 app.post('/create-account', function(req, res){
 
-    User.create({
+    User.register(new User({
         username: req.body.username,
         password: req.body.password
-    }, function(err, createdUser) {
+    }), req.body.password, function(err, createdUser) {
 
         if(err) {
             console.error(err)
-        } else {
-            res.redirect('home.html');
         }
+
+        passport.authenticate('local')( req, res, function() {
+            res.redirect('home.html');
+        });
     });
 });
 
@@ -89,7 +91,6 @@ app.post('/login', passport.authenticate('local', {
 }));
 
 app.use('/', function(req, res, next) {
-   console.log(req.url);
    if(req.isAuthenticated()){
        next();
    } else {
