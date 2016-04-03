@@ -2,10 +2,9 @@ var mongoose = require('mongoose'),
     passport = require('passport'),
     path = require('path'),
     LocalStrategy = require('passport-local').Strategy,
-    staticConfig = require('./config/static'),
-    User = require('./models/user');
+    staticConfig = require('./config/static');
 
-module.exports = function(app) {
+module.exports = function(app, User) {
 
     app.get('/signin', function(req, res){
        res.sendFile(path.resolve(__dirname + staticConfig.appDirectory + '/signin.html'));
