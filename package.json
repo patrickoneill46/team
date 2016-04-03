@@ -4,7 +4,7 @@
   "description": "Team app",
   "main": "server/app.js",
   "scripts": {
-    "test": "test",
+    "test": "./node_modules/mocha/bin/mocha server/test/models/user.js",
     "start": "node server/app/app.js"
   },
   "author": "Patrick O'Neill",
@@ -13,5 +13,9 @@
     "express": "^4.13.3",
     "mongoose": "^4.1.9",
     "passport-local-mongoose": "^3.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "mocha": "^2.4.5"
   }
 }
