@@ -4,6 +4,8 @@ var mongoose = require('mongoose'),
     LocalStrategy = require('passport-local').Strategy,
     staticConfig = require('./config/static');
 
+var playerData = require('../data/players');
+
 module.exports = function(app, User) {
 
     function getStaticPage(filePath){
@@ -51,6 +53,11 @@ module.exports = function(app, User) {
            console.log('redirecting to sigin in');
            res.redirect('signin');
        }
+    });
+
+    app.get('/players', function(req, res) {
+
+        res.send(200, playerData);
     });
 
     app.get('/', function(req, res) {

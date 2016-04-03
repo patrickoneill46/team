@@ -35,30 +35,28 @@
     </div>
 </div>
 
-<h1>
-    Team Homepage
-</h1>
 
-<div>
-    <p>Congratualtions you have signed in.</p>
-    <p>Welcome to the homepage</p>
+<div class="container">
+
+    <h1>Team Homepage</h1>
+
+    <div ng-view=""></div>
 </div>
 
-<div ng-view=""></div>
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<!-- endbower -->
 
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <!-- endbower -->
-
-    <!--scripts:js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/profile.js"></script>
-    <script src="scripts/controllers/team.js"></script>
-    <!-- endscripts -->
+<!--scripts:js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/profile.js"></script>
+<script src="scripts/controllers/team.js"></script>
+<!-- endscripts -->
 </body>
 
 </html>

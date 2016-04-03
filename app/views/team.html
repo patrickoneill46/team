@@ -1,1 +1,11 @@
-This is the team view
+<h2>Team Selection</h2>
+<div class="row">
+    <div class="col-xs-12">
+        <ul>
+            <li ng-repeat="player in players">
+                <span>{{player.username}}</span>
+                <span>{{player.position}}</span>
+            </li>
+        </ul>
+    </div>
+</div>
