@@ -1,1 +1,23 @@
-This is the profile view
+<h2>Profile</h2>
+<div class="row">
+    <div class="col-xs-12 profile-container">
+        <h3>{{username}}</h3>
+        <form>
+            <div class="form-group">
+                <label for="primary-position">Primary position: </label>
+                <select id="primary-position" ng-options="position for position in positions" ng-model="primaryPosition">
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="secondary-position">Secondary positions: </label>
+                <div ng-repeat="position in positions" id="secondary-position">
+                    <input type="checkbox"><span>{{position}}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone-number">Phone Number: </label>
+                <input type="text" id="phone-number">
+            </div>
+        </form>
+    </div>
+</div>
