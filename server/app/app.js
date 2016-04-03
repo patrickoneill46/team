@@ -64,18 +64,36 @@ app.get('/signin', function(req, res){
    res.sendFile(path.resolve(__dirname + staticConfig.appDirectory + '/signin.html'));
 });
 
-app.post('/login', function(req, res, next){
+app.get('/create-account', function(req, res){
+   res.sendFile(path.resolve(__dirname + staticConfig.appDirectory + '/createaccount.html'));
+});
 
-    console.log('login post');
-    next();
+app.get('/favicon.ico', function(req, res){
+
+});
+
+app.post('/create-account', function(req, res){
+
+    User.create({
+        username: req.body.username,
+        password: req.body.password
+    }, function(err, createdUser) {
+
+        if(err) {
+            console.error(err)
+        } else {
+            res.redirect('home.html');
+        }
+    });
 });
 
 app.post('/login', passport.authenticate('local', {
-    failureRedirect: '/signin.html',
+    failureRedirect: '/signin',
     successRedirect: '/home.html'
 }));
 
-app.use(function(req, res, next) {
+app.use('/', function(req, res, next) {
+   console.log(req.url);
    if(req.isAuthenticated()){
        next();
    } else {
