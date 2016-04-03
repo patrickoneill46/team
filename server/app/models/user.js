@@ -24,7 +24,7 @@ var User = new Schema({
     },
     position: {
         type: String,
-        enum: ['Loosehead', 'Hooker', 'Tighthead', 'Second row', 'Back row', 'Scrum half', 'Out half', 'Centre', 'Wing', 'Full back']
+        enum: ['Loosehead', 'Hooker', 'Tighthead', 'Second row', 'Back row', 'Scrum half', 'Out half', 'Centre', 'Wing', 'Fullback']
     }
 }, {
     collection: 'userInfo'

@@ -2,6 +2,7 @@
 
 var chai = require('chai'),
     utils = require('../utils/database'),
+    playerData = require('../../data/players'),
     User = require('../../app/models/user');
 
 describe('Users: models', function () {
@@ -48,6 +49,20 @@ describe('Users: models', function () {
             '`' + invalidUser.position + '` is not a valid enum value for path `position`.');
         done();
     })
+   });
+
+   it('should create a profile for each valid position', function(done){
+
+    var count = 0, numPlayers = playerData.length;
+
+    playerData.forEach(function(player, index) {
+        User.create(player, function(err, createdUser){
+           chai.assert.isNull(err);
+           if(++count == numPlayers -1) {
+            done();
+           }
+        });
+    });
    });
  });
 
