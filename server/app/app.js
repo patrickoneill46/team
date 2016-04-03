@@ -24,10 +24,6 @@ app.use(passport.session());
 
 passport.use(new LocalStrategy(function(username, password, done){
     User.findOne({
-    }, function(err,user){
-        console.log(user);
-    });
-    User.findOne({
         'username': username,
         'password': password
     }, function(err, user){
