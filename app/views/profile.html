@@ -2,21 +2,24 @@
 <div class="row">
     <div class="col-xs-12 profile-container">
         <h3>{{username}}</h3>
-        <form>
+        <form name="profileForm" novalidate role="form" ng-submit="submitForm()">
             <div class="form-group">
                 <label for="primary-position">Primary position: </label>
-                <select id="primary-position" ng-options="position for position in positions" ng-model="primaryPosition">
+                <select id="primary-position" ng-options="position for position in positions" ng-model="position">
                 </select>
             </div>
             <div class="form-group">
                 <label for="secondary-position">Secondary positions: </label>
-                <div ng-repeat="position in positions" id="secondary-position">
-                    <input type="checkbox"><span>{{position}}</span>
+                <div ng-repeat="position in positions track by $index" id="secondary-position">
+                    <input type="checkbox" ng-model="secondaryPosition[$index]"><span>{{position}}</span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="phone-number">Phone Number: </label>
                 <input type="text" id="phone-number">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn" value="Save">
             </div>
         </form>
     </div>

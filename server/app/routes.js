@@ -12,7 +12,7 @@ module.exports = function(app, User) {
         return path.resolve(__dirname + staticConfig.appDirectory + filePath);
     }
 
-    app.get('/signin', function(req, res){
+    app.get('/signin', function(req, res) {
        res.sendFile(getStaticPage('/signin.html'));
     });
 
@@ -20,11 +20,11 @@ module.exports = function(app, User) {
        res.sendFile(getStaticPage('/createaccount.html'));
     });
 
-    app.get('/favicon.ico', function(req, res){
+    app.get('/favicon.ico', function(req, res) {
 
     });
 
-    app.post('/create-account', function(req, res){
+    app.post('/create-account', function(req, res) {
 
         User.register(new User({
             username: req.body.username,
@@ -56,8 +56,40 @@ module.exports = function(app, User) {
     });
 
     app.get('/players', function(req, res) {
-
         res.send(200, playerData);
+    });
+
+    app.post('/update-account', function(req, res) {
+
+        console.log(req.body);
+        User.findOne({'username': req.body.username}, function (err, foundUser) {
+
+            if (err) {
+                res.send(err);
+            }
+
+            foundUser.update({}, {$set: req.body}, function (err, updatedUser) {
+
+                if(err) {
+                    console.log('error: ', err);
+                }
+                console.log('updated user', updatedUser);
+                res.send('updated successfully');
+            });
+        });
+    });
+
+    app.get('/profile/:username', function(req, res) {
+
+        console.log(req.params);
+        User.findOne({'username': req.params.username}, function(err, foundUser) {
+
+            if (err) {
+                console.log('error finding user', err);
+                res.status(500).send('error', err);
+            }
+            res.send(foundUser);
+        });
     });
 
     app.get('/', function(req, res) {
