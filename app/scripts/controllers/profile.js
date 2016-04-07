@@ -4,6 +4,7 @@ angular.module('teamApp')
   .controller('ProfileCtrl',['$scope', '$http', function ($scope, $http) {
 
     $scope.username = 'admin3';
+    $scope.position;
 
     $scope.positions = [
         'Loosehead', 'Hooker', 'Tighthead', 'Second row', 'Back row', 'Scrum half',
