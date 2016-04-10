@@ -26,6 +26,12 @@ var User = new Schema({
     position: {
         type: String,
         enum: ['Loosehead', 'Hooker', 'Tighthead', 'Second row', 'Back row', 'Scrum half', 'Out half', 'Centre', 'Wing', 'Fullback']
+    },
+    secondaryPositions: {
+        type: Object
+    },
+    phoneNumber: {
+        type: String
     }
 }, {
     collection: 'userInfo'

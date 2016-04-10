@@ -24,12 +24,16 @@ angular.module('teamApp')
         fullback: false
     };
 
+    $scope.phoneNumber;
+
     $http.get('/profile/' + $scope.username).then(function(response){
 
         console.log(response);
 
         $scope.username = response.data.username;
         $scope.position = response.data.position;
+        $scope.secondaryPositions = response.data.secondaryPositions;
+        $scope.phoneNumber = response.data.phoneNumber;
     });
 
     $scope.submitForm = function(form) {
@@ -37,7 +41,8 @@ angular.module('teamApp')
         $http.post('update-account', {
             username: $scope.username,
             position: $scope.position,
-            secondaryPositions: $scope.secondaryPositions
+            secondaryPositions: $scope.secondaryPositions,
+            phoneNumber: $scope.phoneNumber
         }, function(response) {
             console.log(response);
         });
