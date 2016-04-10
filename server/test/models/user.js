@@ -5,15 +5,44 @@ var chai = require('chai'),
     playerData = require('../../data/players'),
     User = require('../../app/models/user');
 
+var secondaryPositions,
+    invalidUser,
+    newUser;
+
 describe('Users: models', function () {
 
- describe('#create()', function () {
-   it('should create a new User', function (done) {
+    beforeEach(function () {
 
-     var newUser = {
-        username: 'oneillp',
-        password: '1234abc'
-     };
+        secondaryPositions: {
+            looshead: false,
+            hooker: false,
+            tighthead: false,
+            secondRow: false,
+            backRow: false,
+            scrumHalf: false,
+            outHalf: false,
+            centre: false,
+            wing: false,
+            fullback: false
+        };
+
+        newUser = {
+            username: 'oneillp',
+            password: '1234abc',
+            position: 'Back Row',
+            secondaryPositions: secondaryPositions
+        };
+
+        invalidUser = {
+            username: '1234',
+            password: 'asdsada',
+            position: 'Goalkeeper'
+        };
+    });
+
+ describe('#create()', function () {
+ 
+   it('should create a new User', function (done) {
 
      User.create(newUser, function (err, createdUser) {
 
@@ -36,11 +65,6 @@ describe('Users: models', function () {
 
    it('should validate fields have the correct data', function(done) {
 
-    var invalidUser = {
-        username: '1234',
-        password: 'asdsada',
-        position: 'Goalkeeper'
-    };
 
     User.create(invalidUser, function(err) {
         chai.assert.isDefined(err.errors['username'].message);
@@ -51,7 +75,7 @@ describe('Users: models', function () {
     })
    });
 
-   it('should create a profile for each valid position', function(done){
+   it('should create a profile for each valid position', function(done) {
 
     var count = 0, numPlayers = playerData.length;
 
