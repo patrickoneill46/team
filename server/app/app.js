@@ -29,5 +29,7 @@ app.get('/', function (req, res) {
   res.sendFile('home.html');
 });
 
-app.listen(3000);
+app.listen(3000, function(){
+    console.log('Team app started');
+});
 

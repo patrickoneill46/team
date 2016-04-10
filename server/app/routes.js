@@ -41,10 +41,16 @@ module.exports = function(app, User) {
         });
     });
 
-    app.post('/login', passport.authenticate('local', {
-        failureRedirect: '/signin',
-        successRedirect: '/'
-    }));
+    var session, user;
+    app.post('/login', passport.authenticate('local'), function(req, res) {
+
+
+        if (!req.user) {
+            res.redirect('/signin');
+        }
+        res.cookies = req.user.username;
+        res.redirect('/');
+    });
 
     app.use('/', function(req, res, next) {
        if(req.isAuthenticated()){
