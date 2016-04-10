@@ -5,13 +5,13 @@
         <form name="profileForm" novalidate role="form" ng-submit="submitForm()">
             <div class="form-group">
                 <label for="primary-position">Primary position: </label>
-                <select id="primary-position" ng-options="position for position in positions" ng-model="position">
+                <select id="primary-position" ng-options="option for option in positions" ng-model="position">
                 </select>
             </div>
             <div class="form-group">
                 <label for="secondary-position">Secondary positions: </label>
-                <div ng-repeat="position in positions track by $index" id="secondary-position">
-                    <input type="checkbox" ng-model="secondaryPosition[$index]"><span>{{position}}</span>
+                <div ng-repeat="(key, value) in secondaryPositions" id="secondary-position">
+                    <input type="checkbox" ng-model="secondaryPositions[key]"><span>{{key}}</span>
                 </div>
             </div>
             <div class="form-group">

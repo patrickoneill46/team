@@ -61,14 +61,16 @@ module.exports = function(app, User) {
 
     app.post('/update-account', function(req, res) {
 
-        console.log(req.body);
         User.findOne({'username': req.body.username}, function (err, foundUser) {
 
             if (err) {
+                console.log('error updating', err);
                 res.send(err);
             }
 
-            foundUser.update({}, {$set: req.body}, function (err, updatedUser) {
+            console.log(req.body);
+
+            User.findByIdAndUpdate(foundUser._id, {$set: req.body}, function (err, updatedUser) {
 
                 if(err) {
                     console.log('error: ', err);

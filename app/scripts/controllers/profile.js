@@ -11,7 +11,18 @@ angular.module('teamApp')
         'Out half', 'Centre', 'Wing', 'Fullback'
     ];
 
-    $scope.secondaryPositions = [];
+    $scope.secondaryPositions = {
+        looshead: false,
+        hooker: false,
+        tighthead: false,
+        secondRow: false,
+        backRow: false,
+        scrumHalf: false,
+        outHalf: false,
+        centre: false,
+        wing: false,
+        fullback: false
+    };
 
     $http.get('/profile/' + $scope.username).then(function(response){
 
@@ -25,7 +36,7 @@ angular.module('teamApp')
 
         $http.post('update-account', {
             username: $scope.username,
-            position: $scope.positions,
+            position: $scope.position,
             secondaryPositions: $scope.secondaryPositions
         }, function(response) {
             console.log(response);
