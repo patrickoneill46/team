@@ -5,6 +5,15 @@ angular.module('teamApp')
     $scope.name = 'Fixtures';
     console.log($scope.name);
 
+    $http.get('/fixtures').then(function (response) {
+
+        console.log('fixtures response', response);
+        $scope.fixtures = response.data;
+    }, function(error) {
+
+        console.log(error);
+    });
+
     $scope.createFixture = function(form) {
 
         $http.post('/create-fixture', {

@@ -14,4 +14,15 @@ module.exports = function (app) {
         });
     });
 
+    app.get('/fixtures/', function(req, res) {
+
+        Fixture.find({}, function(err, fixtures) {
+
+            if (err) {
+                res.status(503).send(fixtures);
+            }
+            res.status(200).send(fixtures);
+        });
+    });
+
 };
