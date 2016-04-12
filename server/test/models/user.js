@@ -13,7 +13,7 @@ describe('Users: models', function () {
 
     beforeEach(function () {
 
-        secondaryPositions: {
+        secondaryPositions = {
             looshead: false,
             hooker: false,
             tighthead: false,
@@ -29,7 +29,7 @@ describe('Users: models', function () {
         newUser = {
             username: 'oneillp',
             password: '1234abc',
-            position: 'Back Row',
+            position: 'Back row',
             secondaryPositions: secondaryPositions
         };
 
