@@ -5,14 +5,17 @@ angular.module('teamApp')
     $scope.name = 'Fixtures';
     console.log($scope.name);
 
-    $http.get('/fixtures').then(function (response) {
+    $scope.getFixtures = function () {
 
-        console.log('fixtures response', response);
-        $scope.fixtures = response.data;
-    }, function(error) {
+        $http.get('/fixtures').then(function (response) {
 
-        console.log(error);
-    });
+            console.log('fixtures response', response);
+            $scope.fixtures = response.data;
+        }, function(error) {
+
+            console.log(error);
+        });
+    };
 
     $scope.createFixture = function(form) {
 
@@ -24,8 +27,12 @@ angular.module('teamApp')
         }).then(function (response) {
             console.log(response);
 
+            $scope.getFixtures();
+
         }, function(response) {
             console.log('error', response);
         });
     };
+
+    $scope.getFixtures();
   }]);
