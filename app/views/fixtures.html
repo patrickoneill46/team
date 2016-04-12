@@ -4,14 +4,16 @@
         <h3>Fixture List</h3>
         <ul>
             <li ng-repeat="fixture in fixtures">
-                <div class="fixture-header">
-                    {{fixture.teamName}}<span> vs </span>{{fixture.opposition}}
-                </div>
-                <div class="fixture-details row">
-                    <div class="fixture-date col-xs-12">{{fixture.date}}</div>
-                    <div class="fixture-kick-off-time col-xs-12">{{fixture.kickOffTime}}</div>
-                    <div class="fixture-venue col-xs-12">{{fixture.venue}}</div>
-                </div>
+                <a href="/#/fixture/test-fixture">
+                    <div class="fixture-header">
+                        {{fixture.teamName}}<span> vs </span>{{fixture.opposition}}
+                    </div>
+                    <div class="fixture-details row">
+                        <div class="fixture-date col-xs-12">{{fixture.date}}</div>
+                        <div class="fixture-kick-off-time col-xs-12">{{fixture.kickOffTime}}</div>
+                        <div class="fixture-venue col-xs-12">{{fixture.venue}}</div>
+                    </div>
+                </a>
             </li>
         </ul>
     </div>
