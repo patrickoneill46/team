@@ -7,7 +7,12 @@ angular.module('teamApp')
 
     $scope.createFixture = function(form) {
 
-        $http.post('/create-fixture').then(function (response) {
+        $http.post('/create-fixture', {
+            location: $scope.createFixtureLocation,
+            date: $scope.createFixtureDate,
+            kickoff: $scope.createFixtureKickoff,
+            mapsLink: $scope.createFixtureMapsLink
+        }).then(function (response) {
             console.log(response);
 
         }, function(response) {

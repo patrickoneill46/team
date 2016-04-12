@@ -1,5 +1,4 @@
 var mongoose = require('mongoose'),
-    passportLocalMongoose = require('passport-local-mongoose'),
     Schema = mongoose.Schema;
 
 var Fixture = new Schema({
@@ -27,6 +26,5 @@ var Fixture = new Schema({
     collection: 'fixtures'
 });
 
-Fixture.plugin(passportLocalMongoose);
 
-module.exports = mongoose.model('userInfo', Fixture);
+module.exports = mongoose.model('fixture', Fixture);

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     passport = require('passport'),
     path = require('path'),
+    Fixture = require('./models/fixture'),
     LocalStrategy = require('passport-local').Strategy,
     staticConfig = require('./config/static');
 
@@ -87,10 +88,16 @@ module.exports = function(app, User) {
         });
     });
 
-    app.post('/create-fixture', function(res, res) {
+    app.post('/create-fixture', function(req, res) {
 
         console.log('create fixture');
-        res.status(200).send('create fixture route');
+        var newFixture = new Fixture(req.body);
+        newFixture.save(function (err, newFixture) {
+            if(err){
+                res.status(503, err);
+            }
+            res.status(200).send(newFixture);
+        });
     });
 
     app.get('/profile/:username', function(req, res) {
