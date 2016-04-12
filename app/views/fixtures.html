@@ -1,1 +1,52 @@
-This is the fixtures view
+<h2>Fixtures</h2>
+<div class="row">
+    <div class="col-xs-12 fixture-list">
+        <h3>Fixture List</h3>
+        <ul>
+            <li ng-repeat="fixture in fixtures">
+                <div class="fixture-header">
+                    {{fixture.teamName}}<span> vs </span>{{fixture.opposition}}
+                </div>
+                <div class="fixture-details row">
+                    <div class="fixture-date col-xs-12">{{fixture.date}}</div>
+                    <div class="fixture-kick-off-time col-xs-12">{{fixture.kickOffTime}}</div>
+                    <div class="fixture-venue col-xs-12">{{fixture.venue}}</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 create-fixture">
+        <h3>Create Fixture</h3>
+        <form name="createFixtureForm" novalidate role="form" ng-submit="createFixture()">
+            <div class="form-group col-xs-12 col-sm-6">
+                <label for="create-fixture-date">Date</label>
+                <input type="date" id="create-fixture-date" ng-model="createFixtureDate"/>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6">
+                <label for="create-fixture-kick-off">Kick Off Time</label>
+                <input type="date" id="create-fixture-kick-off" ng-model="createFixtureKickOff"/>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6">
+                <label for="create-fixture-venue">Venue</label>
+                <input type="text" id="create-fixture-venue" ng-model="createFixtureVenue"/>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6">
+                <label for="create-fixture-maps-link">Maps Link</label>
+                <input type="text" id="create-fixture-maps-link" ng-model="createFixtureMapsLink"/>
+            </div>
+            <div class="form-group col-xs-12">
+                <label for="create-fixture-description">Description</label>
+                <textarea class="form-control"
+                          name="create-fixture-description"
+                          id="create-fixture-description"
+                          ng-model="createFixtureDescription">
+                </textarea>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6">
+                <input type="submit" class="btn" value="Create Fixture">
+            </div>
+        </form>
+    </div>
+</div>

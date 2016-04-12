@@ -87,6 +87,12 @@ module.exports = function(app, User) {
         });
     });
 
+    app.post('/create-fixture', function(res, res) {
+
+        console.log('create fixture');
+        res.status(200).send('create fixture route');
+    });
+
     app.get('/profile/:username', function(req, res) {
 
         console.log(req.params);
