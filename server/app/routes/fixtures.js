@@ -25,4 +25,18 @@ module.exports = function (app) {
         });
     });
 
+    app.get('/fixture/:fixtureId', function(req, res) {
+
+        console.log(req.params);
+
+        Fixture.findOne({}, function(err, fixture) {
+
+            if (err) {
+                res.status(503).send(err);
+            }
+
+            res.status(200).send(fixture);
+        });
+    });
+
 };

@@ -30,6 +30,10 @@ angular
         templateUrl: 'views/fixtures.html',
         controller: 'FixturesCtrl'
       })
+      .when('/fixture/:fixtureId', {
+        templateUrl: 'views/fixture.html',
+        controller: 'FixtureCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
