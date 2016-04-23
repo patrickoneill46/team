@@ -1,0 +1,30 @@
+<h2>Team Selection</h2>
+<div class="row">
+    <div class="col-xs-12">
+        <ul>
+            <li ng-repeat="team in teams">
+                <a ng-href="#/team/{{team._id}}"><span>{{team.teamName}}</span></a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-xs-12 create-fixture">
+        <h3>Create Team</h3>
+        <form name="createTeamForm" novalidate role="form" ng-submit="createTeam()">
+            <div class="form-group col-xs-12 col-sm-6">
+                <label for="create-team-name">Team name </label>
+                <input type="string" id="create-team-name" ng-model="createTeamName"/>
+            </div>
+            <div class="form-group col-xs-12">
+                <label for="create-team-description">Description </label>
+            <textarea class="form-control"
+                      name="create-team-description"
+                      id="create-team-description"
+                      ng-model="createTeamDescription">
+            </textarea>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6">
+                <input type="submit" class="btn" value="Create Team">
+            </div>
+        </form>
+    </div>
+</div>

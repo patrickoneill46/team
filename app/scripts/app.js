@@ -23,8 +23,12 @@ angular
         controller: 'ProfileCtrl'
       })
       .when('/team', {
-        templateUrl: 'views/team.html',
+        templateUrl: 'views/teams.html',
         controller: 'TeamsCtrl'
+      })
+      .when('/team/:teamId', {
+        templateUrl: 'views/team.html',
+        controller: 'TeamCtrl'
       })
       .when('/fixtures', {
         templateUrl: 'views/fixtures.html',

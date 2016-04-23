@@ -29,11 +29,13 @@ module.exports = function (app) {
 
         console.log(req.params);
 
-        Team.findOne({}, function(err, fixture) {
+        Team.findOne({_id: req.params.teamId}, function(err, fixture) {
 
             if (err) {
                 res.status(503).send(err);
             }
+
+            console.log(fixture);
 
             res.status(200).send(fixture);
         });
