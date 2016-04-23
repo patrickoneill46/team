@@ -24,7 +24,7 @@ angular
       })
       .when('/team', {
         templateUrl: 'views/team.html',
-        controller: 'TeamCtrl'
+        controller: 'TeamsCtrl'
       })
       .when('/fixtures', {
         templateUrl: 'views/fixtures.html',

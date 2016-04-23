@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('teamApp')
-  .controller('TeamCtrl', ['$scope', '$http', function ($scope, $http) {
+  .controller('TeamsCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.name = 'Team';
     $scope.players = [];
     console.log($scope.name);
