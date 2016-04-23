@@ -4,7 +4,7 @@
         <h3>Fixture List</h3>
         <ul>
             <li ng-repeat="fixture in fixtures">
-                <a href="/#/fixture/test-fixture">
+                <a ng-href="/#/fixture/{{fixture._id}}">
                     <div class="fixture-header">
                         {{fixture.teamName}}<span> vs </span>{{fixture.opposition}}
                     </div>

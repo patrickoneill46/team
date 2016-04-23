@@ -29,7 +29,7 @@ module.exports = function (app) {
 
         console.log(req.params);
 
-        Fixture.findOne({}, function(err, fixture) {
+        Fixture.findOne({ _id: req.params.fixtureId }, function(err, fixture) {
 
             if (err) {
                 res.status(503).send(err);
