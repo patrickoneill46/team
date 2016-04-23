@@ -68,6 +68,7 @@ module.exports = function(app, User) {
 
     require('./routes/users')(app, User);
     require('./routes/fixtures')(app);
+    require('./routes/teams')(app);
 
     app.get('/', function(req, res) {
         res.sendFile(getStaticPage('home.html'));
