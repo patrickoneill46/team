@@ -1,21 +1,21 @@
 'use strict';
 
 angular.module('teamApp')
-  .controller('TeamsCtrl', ['$scope', '$http', function ($scope, $http) {
+  .controller('TeamsCtrl', ['$scope', 'teamsService', function ($scope, teamService) {
+  
     $scope.name = 'Team';
     $scope.players = [];
-    console.log($scope.name);
-    $http.get('players').then(function(response) {
-        console.log(response);
-        $scope.players = response.data;
-    });
+//    $http.get('players').then(function(response) {
+//        console.log(response);
+//        $scope.players = response.data;
+//    });
 
     $scope.createTeam = function (teamForm) {
 
-        $http.post('/create-team', {
+        teamService.createTeam({
             teamName: $scope.createTeamName,
             teamCaptain: $scope.createTeamDescription
-        }).then(function (response) {
+        }, function (response) {
             console.log(response);
 
             $scope.getTeams();
@@ -28,7 +28,7 @@ angular.module('teamApp')
 
     $scope.getTeams = function () {
 
-        $http.get('/teams').then(function (response) {
+        teamService.get(function (response) {
 
             console.log('teams response', response);
             $scope.teams = response.data;
