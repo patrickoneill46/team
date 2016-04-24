@@ -32,7 +32,10 @@ angular.module('teamApp')
         },
         updateFixture: {
             method: 'PUT',
-            url: '/update-fixture',
+            params: {
+                fixtureId: 'fixtureId'
+            },
+            url: '/fixtures/:fixtureId'
         },
         removeFixture: {
             method: 'DELETE',

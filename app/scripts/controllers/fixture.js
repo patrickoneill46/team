@@ -4,7 +4,8 @@ angular.module('teamApp')
   .controller('FixtureCtrl', ['$scope', '$routeParams', 'fixturesService', function ($scope, $routeParams, fixturesService) {
 
     $scope.name = 'Fixture';
-    $scope.updateFixture = false;
+    $scope.editMode = false;
+    $scope.updateInProgress = false;
 
     $scope.getFixture = function() {
 
@@ -27,17 +28,45 @@ angular.module('teamApp')
         });
     };
 
+    $scope.updateFixture = function () {
+
+        $scope.updateInProgress = true;
+
+        fixturesService.updateFixture({
+            fixtureId: $scope.fixture._id
+        }, {
+            fixture: {
+                date: $scope.updateFixtureModel.date,
+                kickoff: $scope.updateFixtureModel.kickoff,
+                meetTime: $scope.updateFixtureModel.meetTime,
+                venue: $scope.updateFixtureModel.venue,
+                mapsLink: $scope.updateFixtureModel.mapsLink,
+                description: $scope.updateFixtureModel.description
+            }
+        }, function (response) {
+
+            console.log(response.fixture);
+            $scope.fixture = response.fixture;
+            $scope.updateInProgress = false;
+            $scope.editMode = false;
+        }, function (response) {
+
+            $scope.updateInProgress = false;
+            console.log('error updating fixture');
+        });
+    };
+
     $scope.toggleUpdateFixture = function() {
 
         $scope.updateFixtureModel = angular.copy($scope.fixture);
         $scope.updateFixtureModel.date = new Date($scope.updateFixtureModel.date);
         $scope.updateFixtureModel.kickoff = new Date($scope.updateFixtureModel.kickoff);
-        $scope.updateFixture = true;
+        $scope.editMode = true;
     };
 
     $scope.cancelUpdateFixture = function() {
 
-        $scope.updateFixture = false;
+        $scope.editMode = false;
         $scope.updateFixtureModel = null;
     };
 

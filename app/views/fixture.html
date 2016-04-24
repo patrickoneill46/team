@@ -1,4 +1,4 @@
-<div class="row fixture-detail-container" ng-show="!updateFixture">
+<div class="row fixture-detail-container" ng-hide="editMode">
     <div class="fixture-detail-header col-xs-12">
         {{fixture.teamName}} vs {{fixture.opposition}}
     </div>
@@ -25,7 +25,7 @@
         <input type="submit" class="btn" value="Update Selection">
     </form>
 </div>
-<div class="row fixture-update-container" ng-if="updateFixture">
+<div class="row fixture-update-container" ng-if="editMode">
     <div class="update-fixture-container col-xs-12 col-sm-6">
         <button class="btn" ng-click="cancelUpdateFixture()">Cancel update fixture</button>
     </div>

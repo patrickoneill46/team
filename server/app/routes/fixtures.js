@@ -39,6 +39,25 @@ module.exports = function (app) {
         });
     });
 
+    app.put('/fixtures/:fixtureId', function (req, res) {
+
+        console.log('updating fixture', req.body.fixture, req.body.fixtureId);
+
+        Fixture.findByIdAndUpdate(req.params.fixtureId, {
+            $set: req.body.fixture
+        }, {
+            new: true
+        }, function (err, fixture) {
+
+            console.log(fixture);
+
+            if (err) {
+                res.status(503).send(err);
+            }
+            res.status(200).send({ fixture: fixture });
+        });
+    });
+
     app.put('/fixtures/:fixtureId/update-selection', function(req, res) {
 
         console.log(req.body, req.params, 'createSelection');
