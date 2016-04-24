@@ -25,6 +25,19 @@
         <input type="submit" class="btn" value="Update Selection">
     </form>
 </div>
+<div class="row fixture-selection-container" ng-hide="editMode">
+    <div class="col-xs-12 col-sm-6 players-list">
+        <h3></h3>
+        <div class="players-list-item" ng-repeat="player in players" ng-click="selectPlayer(player)">
+            {{player.username}}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 squad-list">
+        <div class="squad-player" ng-repeat="player in selectedPlayers" ng-click="removePlayer(player)">
+            {{player.username}}
+        </div>
+    </div>
+</div>
 <div class="row fixture-update-container" ng-if="editMode">
     <div class="update-fixture-container col-xs-12 col-sm-6">
         <button class="btn" ng-click="cancelUpdateFixture()">Cancel update fixture</button>

@@ -1,11 +1,18 @@
 'use strict';
 
 angular.module('teamApp')
-  .controller('FixtureCtrl', ['$scope', '$routeParams', 'fixturesService', function ($scope, $routeParams, fixturesService) {
+  .controller('FixtureCtrl', [
+    '$scope',
+    '$routeParams',
+    'fixturesService',
+    'playerService',
+    function ($scope, $routeParams, fixturesService, playerService) {
 
     $scope.name = 'Fixture';
     $scope.editMode = false;
     $scope.updateInProgress = false;
+    $scope.players = [];
+    $scope.selectedPlayers = [];
 
     $scope.getFixture = function() {
 
@@ -70,5 +77,26 @@ angular.module('teamApp')
         $scope.updateFixtureModel = null;
     };
 
+    $scope.getPlayers = function() {
+
+        playerService.get(function (response) {
+
+            console.log(response);
+            $scope.players = response;
+        });
+    };
+
+    $scope.selectPlayer = function (player) {
+
+        if ($scope.selectedPlayers.indexOf(player) === -1) {
+            $scope.selectedPlayers.push(player);
+        }
+    };
+
+    $scope.removePlayer = function (player) {
+        $scope.selectedPlayers.splice($scope.selectedPlayers.indexOf(player), 1);
+    };
+
+    $scope.getPlayers();
     $scope.getFixture();
 }]);
