@@ -1,8 +1,22 @@
-This is the fixture detail view
-<h1>1st vs 2nd</h1>
-<div class="row">
-    <div class="col-xs-12">
-        <label>Location: </label>{{fixture.location}}
+<div class="row fixture-detail-container">
+    <div class="fixture-detail-header col-xs-12">
+        {{fixture.teamName}} vs {{fixture.opposition}}
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="item-detail-label">Location</div>
+        {{fixture.location}}
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="item-detail-label" ng-if="fixture.mapsLink">Maps link </div>
+        <a ng-href="{{fixture.mapsLink}}" ng-if="fixture.mapsLink">Click to open google maps</a>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="item-detail-label">Date</div>
+        {{fixture.date}}
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="item-detail-label">Kick off</div>
+        {{fixture.kickoff}}
     </div>
     <form ng-submit="updateSelection()">
         <input type="submit" value="Update Selection">
