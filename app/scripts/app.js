@@ -10,7 +10,8 @@
  */
 angular
   .module('teamApp', [
-    'ngRoute'
+    'ngRoute',
+    'ngResource'
   ])
   .config(function ($routeProvider) {
     $routeProvider

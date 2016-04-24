@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('teamApp')
-  .controller('FixturesCtrl', ['$scope', '$http', function ($scope, $http) {
+  .controller('FixturesCtrl', ['$scope', 'fixturesService', function ($scope, fixturesService) {
+
     $scope.name = 'Fixtures';
-    console.log($scope.name);
 
     $scope.getFixtures = function () {
 
-        $http.get('/fixtures').then(function (response) {
+        fixturesService.get(function (response) {
 
             console.log('fixtures response', response);
-            $scope.fixtures = response.data;
+            $scope.fixtures = response;
         }, function(error) {
 
             console.log(error);
@@ -19,14 +19,15 @@ angular.module('teamApp')
 
     $scope.createFixture = function(form) {
 
-        $http.post('/create-fixture', {
-            location: $scope.createFixtureLocation,
+        fixturesService.createFixture({
             date: $scope.createFixtureDate,
             kickoff: $scope.createFixtureKickoff,
-            mapsLink: $scope.createFixtureMapsLink
-        }).then(function (response) {
-            console.log(response);
+            location: $scope.createFixtureLocation,
+            mapsLink: $scope.createFixtureMapsLink,
+            meetTime: $scope.createFixtureMeetTime,
+        }, function (response) {
 
+            console.log(response);
             $scope.getFixtures();
 
         }, function(response) {

@@ -13,6 +13,9 @@ var Fixture = new Schema({
     kickoff: {
         type: Date,
     },
+    meetTime: {
+        type: Date,
+    },
     mapsLink: {
         type: String
     },

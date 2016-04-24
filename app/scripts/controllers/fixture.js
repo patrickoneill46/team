@@ -1,15 +1,16 @@
 'use strict';
 
 angular.module('teamApp')
-  .controller('FixtureCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+  .controller('FixtureCtrl', ['$scope', '$routeParams', 'fixturesService', function ($scope, $routeParams, fixturesService) {
     $scope.name = 'Fixture';
-    console.log($routeParams);
-    $http.get('fixture/' + $routeParams.fixtureId).then(function (response) {
 
-        $scope.fixture = response.data;
-        console.log($scope.fixture);
-    }, function (error) {
+    $scope.getFixture = function() {
 
-        console.log(error);
-    });
+        fixturesService.getOne({ fixtureId: $routeParams.fixtureId }, function(response) {
+            console.log('service response', response);
+            $scope.fixture = response;
+        });
+    }
+
+    $scope.getFixture();
 }]);

@@ -25,7 +25,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/fixture/:fixtureId', function(req, res) {
+    app.get('/fixtures/:fixtureId', function(req, res) {
 
         console.log(req.params);
 
