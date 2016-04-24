@@ -12,5 +12,18 @@ angular.module('teamApp')
         });
     }
 
+    $scope.updateSelection = function () {
+
+        $scope.status = 'updating';
+
+        fixturesService.updateSelection({
+            fixtureId: $routeParams.fixtureId
+        }, { selection: new Date() }, function(response) {
+
+            console.log('selection update', response);
+            $scope.fixture = response.fixture;
+        });
+    };
+
     $scope.getFixture();
 }]);

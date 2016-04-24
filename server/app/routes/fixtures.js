@@ -39,4 +39,24 @@ module.exports = function (app) {
         });
     });
 
+    app.put('/fixtures/:fixtureId/update-selection', function(req, res) {
+
+        console.log(req.body, req.params, 'createSelection');
+
+        Fixture.findByIdAndUpdate(req.params.fixtureId, {
+            $set: {
+                squad: req.body.selection
+            }
+        }, function(err, fixture){
+
+            if(err){
+                res.status(503).send(err);
+            }
+
+            res.status(200).send({
+                status: 'updated',
+                fixture: fixture
+            });
+        });
+    });
 };

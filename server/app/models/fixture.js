@@ -24,6 +24,15 @@ var Fixture = new Schema({
     },
     squad: {
         type: Object
+    },
+    teamId: {
+        type: String
+    },
+    opposition: {
+        type: String
+    },
+    confirmed: {
+        type: Boolean
     }
 }, {
     collection: 'fixtures'

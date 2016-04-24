@@ -29,6 +29,28 @@ angular.module('teamApp')
         createFixture: {
             method: 'POST',
             url: '/create-fixture'
+        },
+        updateFixture: {
+            method: 'PUT',
+            url: '/update-fixture',
+        },
+        removeFixture: {
+            method: 'DELETE',
+            url: '/fixtures/:fixtureId'
+        },
+        updateSelection: {
+            method: 'PUT',
+            params: {
+                fixtureId: 'fixtureId'
+            },
+            url: '/fixtures/:fixtureId/update-selection'
+        },
+        confirmSelection: {
+            method: 'PUT',
+            params: {
+                fixtureId: 'fixtureId'
+            },
+            url: '/fixtures/:fixtureId/confirm-selection'
         }
     });
   }]);
