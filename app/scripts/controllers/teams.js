@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('teamApp')
-  .controller('TeamsCtrl', ['$scope', 'teamsService', 'playerService', function ($scope, teamService, playerService) {
+  .controller('TeamsCtrl', ['$scope', 'teamService', 'playerService', function ($scope, teamService, playerService) {
 
     $scope.name = 'Team';
     $scope.players = [];
@@ -35,5 +35,4 @@ angular.module('teamApp')
     };
 
     $scope.getTeams();
-    $scope.getPlayers();
 }]);

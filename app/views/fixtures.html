@@ -23,6 +23,11 @@
         <h3>Create Fixture</h3>
         <form name="createFixtureForm" novalidate role="form" ng-submit="createFixture()">
             <div class="form-group col-xs-12 col-sm-6">
+                <label for="create-fixture-team">Team</label>
+                <select id="create-fixture-team" ng-options="team as team.teamName for team in teams track by team._id" ng-model="createFixtureTeam">
+                </select>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6">
                 <label for="create-fixture-date">Date</label>
                 <input type="date" id="create-fixture-date" ng-model="createFixtureDate"/>
             </div>

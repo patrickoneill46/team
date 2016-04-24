@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('teamApp')
-  .controller('FixturesCtrl', ['$scope', 'fixturesService', function ($scope, fixturesService) {
+  .controller('FixturesCtrl', [
+    '$scope',
+    'fixturesService',
+    'teamService',
+    function ($scope, fixturesService, teamService) {
 
     $scope.name = 'Fixtures';
 
@@ -35,5 +39,12 @@ angular.module('teamApp')
         });
     };
 
+    $scope.getTeams = function () {
+        teamService.get(function (response) {
+            $scope.teams = response;
+        });
+    };
+
+    $scope.getTeams();
     $scope.getFixtures();
   }]);

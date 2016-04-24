@@ -8,7 +8,7 @@
  * Factory in the teamApp.
  */
 angular.module('teamApp')
-  .factory('teamsService', ['$resource', function ($resource) {
+  .factory('teamService', ['$resource', function ($resource) {
 
 
     // Public API here
@@ -29,6 +29,10 @@ angular.module('teamApp')
         createTeam: {
             method: 'POST',
             url: '/create-team'
+        },
+        updateTeam: {
+            method: 'PUT',
+            url: '/update-team'
         }
     });
   }]);

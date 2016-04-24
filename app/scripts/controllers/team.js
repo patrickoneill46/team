@@ -5,8 +5,8 @@ angular.module('teamApp')
     '$scope',
     '$routeParams',
     'playerService',
-    'teamsService',
-     function ($scope, $routeParams, playerService, teamsService) {
+    'teamService',
+     function ($scope, $routeParams, playerService, teamService) {
 
     $scope.getPlayers = function () {
 
@@ -16,7 +16,7 @@ angular.module('teamApp')
         });
     };
 
-    teamsService.getOne({teamId: routeParams.teamId}, function (response) {
+    teamService.getOne({teamId: routeParams.teamId}, function (response) {
 
         $scope.team = response;
         console.log($scope.team);
