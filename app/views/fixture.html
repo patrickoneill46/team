@@ -1,4 +1,4 @@
-<div class="row fixture-detail-container">
+<div class="row fixture-detail-container" ng-show="!updateFixture">
     <div class="fixture-detail-header col-xs-12">
         {{fixture.teamName}} vs {{fixture.opposition}}
     </div>
@@ -18,7 +18,48 @@
         <div class="item-detail-label">Kick off</div>
         {{fixture.kickoff}}
     </div>
+    <div class="update-fixture-container col-xs-12 col-sm-6">
+        <button class="btn" ng-click="toggleUpdateFixture()">Update Fixture</button>
+    </div>
     <form ng-submit="updateSelection()">
-        <input type="submit" value="Update Selection">
+        <input type="submit" class="btn" value="Update Selection">
+    </form>
+</div>
+<div class="row fixture-update-container" ng-if="updateFixture">
+    <div class="update-fixture-container col-xs-12 col-sm-6">
+        <button class="btn" ng-click="cancelUpdateFixture()">Cancel update fixture</button>
+    </div>
+    <form name="updateFixtureForm" novalidate role="form" ng-submit="updateFixture()">
+        <div class="form-group col-xs-12 col-sm-6">
+            <label for="update-fixture-date">Date</label>
+            <input type="date" id="update-fixture-date" ng-model="updateFixtureModel.date"/>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+            <label for="update-fixture-kick-off">Kick Off Time</label>
+            <input type="date" id="update-fixture-kick-off" ng-model="updateFixtureModel.kickoff"/>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+            <label for="update-fixture-venue">Venue</label>
+            <input type="text" id="update-fixture-venue" ng-model="updateFixtureModel.location"/>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+            <label for="update-fixture-meet-time">Meet Time</label>
+            <input type="date" id="update-fixture-meet-time" ng-model="updateFixtureModel.meetTime"/>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+            <label for="update-fixture-maps-link">Maps Link</label>
+            <input type="text" id="update-fixture-maps-link" ng-model="updateFixtureModel.mapsLink"/>
+        </div>
+        <div class="form-group col-xs-12">
+            <label for="update-fixture-description">Description</label>
+                <textarea class="form-control"
+                          name="update-fixture-description"
+                          id="update-fixture-description"
+                          ng-model="updateFixtureModel.description">
+                </textarea>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+            <input type="submit" class="btn" value="Save Changes">
+        </div>
     </form>
 </div>
