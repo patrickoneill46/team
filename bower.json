@@ -21,6 +21,8 @@
     "angular-route": "~1.5.3",
     "angular-resource": "^1.5.3",
     "bootstrap": "~3.3.5",
-    "angular-mocks": "^1.5.3"
+    "angular-mocks": "^1.5.3",
+    "moment": "^2.13.0",
+    "angular-moment": "^0.10.3"
   }
 }

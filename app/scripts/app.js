@@ -11,7 +11,8 @@
 angular
   .module('teamApp', [
     'ngRoute',
-    'ngResource'
+    'ngResource',
+    'angularMoment'
   ])
   .config(function ($routeProvider) {
     $routeProvider

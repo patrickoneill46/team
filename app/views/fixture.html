@@ -12,11 +12,11 @@
     </div>
     <div class="col-xs-12 col-sm-6">
         <div class="item-detail-label">Date</div>
-        {{fixture.date}}
+        {{fixture.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}
     </div>
     <div class="col-xs-12 col-sm-6">
         <div class="item-detail-label">Kick off</div>
-        {{fixture.kickoff}}
+        {{fixture.kickoff | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}
     </div>
     <div class="update-fixture-container col-xs-12 col-sm-6">
         <button class="btn" ng-click="toggleUpdateFixture()">Update Fixture</button>
