@@ -22,6 +22,7 @@ require('./authentication')(app, User);
 require('./routes')(app, User);
 
 app.use('/bower_components', express.static(__dirname + '/../../bower_components/'));
+app.use('/styles', express.static(__dirname + '/../../styles/'));
 app.use(express.static(__dirname + staticConfig.appDirectory));
 
 app.get('/', function (req, res) {

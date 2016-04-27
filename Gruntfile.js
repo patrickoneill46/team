@@ -1,8 +1,7 @@
 module.exports = function(grunt) {
     'use strict';
 
-    grunt.loadNpmTasks('grunt-express-server');
-    grunt.loadNpmTasks('grunt-contrib-watch');
+    require('load-grunt-tasks')(grunt);
 
     grunt.initConfig({
       express: {
@@ -15,19 +14,29 @@ module.exports = function(grunt) {
               }
             }
         },
-
-    watch: {
-        express: {
-          files:  [ '**/*.js' ],
-          tasks:  [ 'express:dev' ],
-          options: {
-            spawn: false // for grunt-contrib-watch v0.5.0+, "nospawn: true" for lower versions. Without this option specified express won't be reloaded
-          }
+        less: {
+            development: {
+                files: {
+                    'styles/styles.css' : ['less/main.less']
+                }
+            }
+        },
+        watch: {
+            express: {
+              files:  [ '**/*.js' ],
+              tasks:  [ 'express:dev' ],
+              options: {
+                spawn: false // for grunt-contrib-watch v0.5.0+, "nospawn: true" for lower versions. Without this option specified express won't be reloaded
+              }
+            },
+            less: {
+                files: ['less/*.less'],
+                tasks: ['less']
+            }
         }
-    }
     });
 
-    grunt.registerTask('serve', [
-        'express', 'watch'
+    grunt.registerTask('default', [
+        'less', 'watch'
     ]);
 }
