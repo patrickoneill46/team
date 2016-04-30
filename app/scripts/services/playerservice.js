@@ -16,7 +16,6 @@ angular.module('teamApp')
     },{
         get: {
             method: 'GET',
-            isArray: true
         },
         getOne: {
             method: 'GET',

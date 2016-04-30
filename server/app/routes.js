@@ -62,13 +62,10 @@ module.exports = function(app, User) {
        }
     });
 
-    app.get('/players', function(req, res) {
-        res.send(200, playerData);
-    });
-
     require('./routes/users')(app, User);
     require('./routes/fixtures')(app);
     require('./routes/teams')(app);
+    require('./routes/players')(app, User);
 
     app.get('/', function(req, res) {
         res.sendFile(getStaticPage('home.html'));

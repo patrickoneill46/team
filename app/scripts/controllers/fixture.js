@@ -91,7 +91,7 @@ angular.module('teamApp')
         playerService.get(function (response) {
 
             console.log(response);
-            $scope.players = response;
+            $scope.players = response.players;
         });
     };
 
