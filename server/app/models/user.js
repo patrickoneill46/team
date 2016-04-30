@@ -23,6 +23,15 @@ var User = new Schema({
             message: 'password must have at least one number and one character'
         }
     },
+    firstName: {
+        type: String,
+    },
+    lastName: {
+        type: String
+    },
+    status: {
+        type: String,
+    },
     position: {
         type: String,
         enum: ['Loosehead', 'Hooker', 'Tighthead', 'Second row', 'Back row', 'Scrum half', 'Out half', 'Centre', 'Wing', 'Fullback']

@@ -34,6 +34,8 @@ angular.module('teamApp')
         $scope.position = response.data.position;
         $scope.secondaryPositions = response.data.secondaryPositions;
         $scope.phoneNumber = response.data.phoneNumber;
+        $scope.firstName = response.data.firstName;
+        $scope.lastName = response.data.lastName;
     });
 
     $scope.submitForm = function(form) {
@@ -42,7 +44,9 @@ angular.module('teamApp')
             username: $scope.username,
             position: $scope.position,
             secondaryPositions: $scope.secondaryPositions,
-            phoneNumber: $scope.phoneNumber
+            phoneNumber: $scope.phoneNumber,
+            firstName: $scope.firstName,
+            lastName: $scope.lastName
         }, function(response) {
             console.log(response);
         });
