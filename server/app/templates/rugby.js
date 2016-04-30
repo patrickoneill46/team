@@ -46,7 +46,16 @@ module.exports = {
             label: 'Blindside Flanker',
             shortLabel: 'Blindside',
             abbr: 'BS',
-            required: true
+            required: true,
+            number: 6,
+        },
+        {
+            id: 'OPENSIDE_FLANKER',
+            label: 'Openside Flanker',
+            shortLabel: 'Openside',
+            abbr: 'OS',
+            required: true,
+            number: 7,
         },
         {
             id: 'NUMBER_EIGHT',

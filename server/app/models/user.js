@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
     passportLocalMongoose = require('passport-local-mongoose'),
+    rugbyEnum = require("../templates/rugby"),
     Schema = mongoose.Schema;
 
 var User = new Schema({
@@ -34,7 +35,7 @@ var User = new Schema({
     },
     position: {
         type: String,
-        enum: ['Loosehead', 'Hooker', 'Tighthead', 'Second row', 'Back row', 'Scrum half', 'Out half', 'Centre', 'Wing', 'Fullback']
+        enum: rugbyEnum.POSITIONS_ENUM.map(function(position) {return position.id})
     },
     secondaryPositions: {
         type: Object

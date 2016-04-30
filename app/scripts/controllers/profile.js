@@ -1,28 +1,17 @@
 'use strict';
 
 angular.module('teamApp')
-  .controller('ProfileCtrl',['$scope', '$http', function ($scope, $http) {
+  .controller('ProfileCtrl',['$scope', '$http', 'rugbyEnum', function ($scope, $http, rugbyEnum) {
 
     $scope.username = 'admin3';
     $scope.position;
 
-    $scope.positions = [
-        'Loosehead', 'Hooker', 'Tighthead', 'Second row', 'Back row', 'Scrum half',
-        'Out half', 'Centre', 'Wing', 'Fullback'
-    ];
+    $scope.positions = rugbyEnum.POSITIONS_ENUM;
 
-    $scope.secondaryPositions = {
-        looshead: false,
-        hooker: false,
-        tighthead: false,
-        secondRow: false,
-        backRow: false,
-        scrumHalf: false,
-        outHalf: false,
-        centre: false,
-        wing: false,
-        fullback: false
-    };
+    $scope.secondaryPositions = rugbyEnum.POSITIONS_ENUM.map(function(position) {
+        position.selected = false;
+        return position;
+    });
 
     $scope.phoneNumber;
 
@@ -32,10 +21,13 @@ angular.module('teamApp')
 
         $scope.username = response.data.username;
         $scope.position = response.data.position;
-        $scope.secondaryPositions = response.data.secondaryPositions;
         $scope.phoneNumber = response.data.phoneNumber;
         $scope.firstName = response.data.firstName;
         $scope.lastName = response.data.lastName;
+
+        response.data.secondaryPositions.forEach(function(position, index) {
+            $scope.secondaryPositions[index].selected = position.selected;
+        });
     });
 
     $scope.submitForm = function(form) {
@@ -43,7 +35,7 @@ angular.module('teamApp')
         $http.post('update-account', {
             username: $scope.username,
             position: $scope.position,
-            secondaryPositions: $scope.secondaryPositions,
+            secondaryPositions: $scope.secondaryPositions.map(function(position) {return {id: position.id, selected: position.selected}}),
             phoneNumber: $scope.phoneNumber,
             firstName: $scope.firstName,
             lastName: $scope.lastName
