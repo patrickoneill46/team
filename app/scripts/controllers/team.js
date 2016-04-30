@@ -16,9 +16,10 @@ angular.module('teamApp')
         });
     };
 
-    teamService.getOne({teamId: routeParams.teamId}, function (response) {
+    teamService.getOne({teamId: $routeParams.teamId}, function (response) {
 
-        $scope.team = response;
+        $scope.team = response.team;
+        $scope.fixtures = response.fixtures;
         console.log($scope.team);
     }, function (error) {
     

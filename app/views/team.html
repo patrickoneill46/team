@@ -1,2 +1,19 @@
 This is the team detail view
 <h2>{{team.teamName}}</h2>
+<div class="col-xs-12 fixture-list">
+    <h3>Fixture List</h3>
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="fixture in fixtures">
+            <a ng-href="/#/fixture/{{fixture._id}}">
+                <div class="fixture-header">
+                    {{fixture.teamName}}<span> vs </span>{{fixture.opposition}}
+                </div>
+                <div class="fixture-details row">
+                    <div class="fixture-date col-xs-12">{{fixture.date | amDateFormat:'dddd, MMMM Do YYYY'}}</div>
+                    <div class="fixture-kick-off-time col-xs-12">{{fixture.kickOffTime | amDateFormat:'dddd, MMMM Do YYYY'}}</div>
+                    <div class="fixture-venue col-xs-12">{{fixture.venue}}</div>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>

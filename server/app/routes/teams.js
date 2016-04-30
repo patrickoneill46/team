@@ -1,4 +1,5 @@
-var Team = require('../models/team');
+var Fixture = require('../models/fixture'),
+    Team = require('../models/team');
 
 module.exports = function (app) {
 
@@ -29,15 +30,20 @@ module.exports = function (app) {
 
         console.log(req.params);
 
-        Team.findOne({_id: req.params.teamId}, function(err, fixture) {
+        Team.findOne({_id: req.params.teamId}, function(err, team) {
 
             if (err) {
                 res.status(503).send(err);
             }
 
-            console.log(fixture);
+            Fixture.find({teamId: req.params.teamId}, function(err, fixtures) {
 
-            res.status(200).send(fixture);
+                if (err) {
+                    res.status(503).send(err);
+                }
+                console.log('finding fixtures', fixtures);
+                res.status(200).send({fixtures: fixtures, team: team});
+            });
         });
     });
 
