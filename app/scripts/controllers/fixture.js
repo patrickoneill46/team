@@ -6,19 +6,24 @@ angular.module('teamApp')
     '$routeParams',
     'fixturesService',
     'playerService',
-    function ($scope, $routeParams, fixturesService, playerService) {
+    'teamService',
+    function ($scope, $routeParams, fixturesService, playerService, teamService) {
 
     $scope.name = 'Fixture';
     $scope.editMode = false;
     $scope.updateInProgress = false;
+    $scope.fixture;
     $scope.players = [];
     $scope.selectedPlayers = [];
+    $scope.teams = [];
+    $scope.team;
 
     $scope.getFixture = function() {
 
         fixturesService.getOne({ fixtureId: $routeParams.fixtureId }, function(response) {
             console.log('service response', response);
-            $scope.fixture = response;
+            $scope.fixture = response.fixture;
+            $scope.team = response.team;
         });
     }
 
@@ -44,18 +49,22 @@ angular.module('teamApp')
         }, {
             fixture: {
                 date: $scope.updateFixtureModel.date,
+                description: $scope.updateFixtureModel.description,
                 kickoff: $scope.updateFixtureModel.kickoff,
-                meetTime: $scope.updateFixtureModel.meetTime,
-                venue: $scope.updateFixtureModel.venue,
                 mapsLink: $scope.updateFixtureModel.mapsLink,
-                description: $scope.updateFixtureModel.description
+                meetTime: $scope.updateFixtureModel.meetTime,
+                opposition: $scope.updateFixtureModel.opposition,
+                teamId: $scope.updateFixtureModel.teamId,
+                venue: $scope.updateFixtureModel.venue,
             }
         }, function (response) {
 
             console.log(response.fixture);
             $scope.fixture = response.fixture;
+            $scope.team = response.team;
             $scope.updateInProgress = false;
             $scope.editMode = false;
+
         }, function (response) {
 
             $scope.updateInProgress = false;
@@ -97,6 +106,14 @@ angular.module('teamApp')
         $scope.selectedPlayers.splice($scope.selectedPlayers.indexOf(player), 1);
     };
 
+    $scope.getTeams = function () {
+
+        teamService.get(function (response) {
+            $scope.teams = response;
+        });
+    };
+
     $scope.getPlayers();
     $scope.getFixture();
+    $scope.getTeams();
 }]);

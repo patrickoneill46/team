@@ -1,4 +1,5 @@
-var Fixture = require('../models/fixture');
+var Fixture = require('../models/fixture'),
+    Team = require('../models/team');
 
 module.exports = function (app) {
 
@@ -35,7 +36,16 @@ module.exports = function (app) {
                 res.status(503).send(err);
             }
 
-            res.status(200).send(fixture);
+            Team.findById(fixture.teamId, function(err, team) {
+
+                if (err) {
+                    res.status(503).send(err);
+                }
+
+                fixture.team = team;
+                console.log('fixtureTeam', fixture.team);
+                res.status(200).send({fixture: fixture, team: team});
+            });
         });
     });
 
@@ -54,7 +64,16 @@ module.exports = function (app) {
             if (err) {
                 res.status(503).send(err);
             }
-            res.status(200).send({ fixture: fixture });
+            Team.findById(fixture.teamId, function(err, team) {
+
+                if (err) {
+                    res.status(503).send(err);
+                }
+
+                fixture.team = team;
+                console.log('fixtureTeam', fixture.team);
+                res.status(200).send({fixture: fixture, team: team});
+            });
         });
     });
 
