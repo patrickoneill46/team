@@ -29,7 +29,7 @@
     <div class="col-xs-12 col-sm-6 players-list">
         <h3></h3>
         <div class="players-list-item" ng-repeat="player in players" ng-click="selectPlayer(player)">
-            {{player.username}}
+            <player ng-model="player"></player>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 squad-list">
