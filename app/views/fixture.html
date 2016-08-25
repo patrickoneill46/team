@@ -22,7 +22,10 @@
         <button class="btn" ng-click="toggleUpdateFixture()">Update Fixture</button>
     </div>
     <form ng-submit="updateSelection()">
-        <input type="submit" class="btn" value="Update Selection">
+        <input type="submit" class="btn"
+          ng-class="{'btn-success' : selectionChanged}"
+          ng-click="updateSelection()"
+          value="Update Selection">
     </form>
 </div>
 <div class="row fixture-selection-container" ng-hide="editMode">

@@ -19,6 +19,7 @@ angular.module('teamApp')
     $scope.team;
     $scope.selectedPlayer;
     $scope.revertDragged = 'invalid';
+    $scope.selectionChanged = false;
 
     function getPlayerIndex(squad, squadPlayer) {
       var selectedIndex = -1;
@@ -45,15 +46,18 @@ angular.module('teamApp')
 
     $scope.updateSelection = function () {
 
+      if ($scope.selectionChanged) {
+
         $scope.status = 'updating';
 
         fixturesService.updateSelection({
-            fixtureId: $routeParams.fixtureId,
+          fixtureId: $routeParams.fixtureId,
         }, { selection: $scope.selectedPlayers }, function(response) {
 
-            console.log('selection update', response);
-            $scope.fixture = response.fixture;
+          $scope.selectionChanged = false;
+          $scope.fixture = response.fixture;
         });
+      }
     };
 
     $scope.updateFixture = function () {
@@ -138,6 +142,7 @@ angular.module('teamApp')
 
       if (getPlayerIndex($scope.selectedPlayers, $scope.selectedPlayer) === -1) {
         $scope.selectedPlayers.push($scope.selectedPlayer);
+        $scope.selectionChanged = true;
       }
       $scope.players[getPlayerIndex($scope.players, $scope.selectedPlayer)].selected = true;
       $scope.selectedPlayer = null;
@@ -170,6 +175,7 @@ angular.module('teamApp')
       if (selectedPlayerIndex !== -1) {
         $scope.players[getPlayerIndex($scope.players, $scope.selectedPlayer)].selected = false;
         $scope.selectedPlayers.splice(selectedPlayerIndex, 1);
+        $scope.selectionChanged = true;
       }
       $scope.onSelectedPlayerOutOfList(e);
     };
