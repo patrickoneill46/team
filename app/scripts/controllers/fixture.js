@@ -120,21 +120,40 @@ angular.module('teamApp')
       console.log('squad list hovered');
     };
 
-    $scope.onPlayerDroppedIntoSquad = function() {
+    $scope.onPlayerDroppedIntoSquad = function(e) {
 
-      console.log('player dropped');
       $scope.selectedPlayers.push($scope.selectedPlayer);
       $scope.selectedPlayer = null;
-    };
-
-    $scope.onPlayerOverSquad = function() {
-      console.log('onPlayerOverSquad');
+      angular.element(e.target).removeClass('playerOverSquad');
     };
 
     $scope.onPlayerDragged = function (player) {
-
-      console.log('player dragged', player);
       $scope.selectedPlayer = player;
+    };
+
+    $scope.onPlayerOverSquad = function (e) {
+      angular.element(e.target).addClass('playerOverSquad');
+    };
+
+    $scope.onPlayerOutOfSquad = function (e) {
+      angular.element(e.target).removeClass('playerOverSquad');
+    };
+
+    $scope.onSelectedPlayerOverList = function (e) {
+      angular.element(e.target).addClass('playerOverList');
+    };
+
+    $scope.onSelectedPlayerOutOfList = function (e) {
+      angular.element(e.target).removeClass('playerOverList');
+    };
+
+    $scope.onSelectedPlayerDroppedIntoList = function (e) {
+
+      var selectedPlayerIndex = $scope.selectedPlayers.indexOf($scope.selectedPlayer);
+      if(selectedPlayerIndex) {
+        $scope.selectedPlayers.splice(selectedPlayerIndex, 1);
+      }
+      $scope.onSelectedPlayerOutOfList(e);
     };
 
     $scope.getPlayers();

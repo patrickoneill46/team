@@ -28,21 +28,24 @@
 <div class="row fixture-selection-container" ng-hide="editMode">
     <div class="col-xs-12 col-sm-6 players-list-container">
         <h3>Players</h3>
-        <div class="players-list-item" ng-repeat="player in players">
+        <div class="players-list"
+          ng-repeat="player in players"
+          data-drop="true"
+          data-jqyoui-options
+          jqyoui-droppable="{onOver: 'onSelectedPlayerOverList()', onOut: 'onSelectedPlayerOutOfList()', onDrop: 'onSelectedPlayerDroppedIntoList()'}">
           <player player=player on-drag='onPlayerDragged(player)'></player>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 squad-list"
       data-drop="true"
       data-jqyoui-options
-      jqyoui-droppable="{onOver: 'onPlayerOverSquad()', onDrop: 'onPlayerDroppedIntoSquad()'}">
+      jqyoui-droppable="{onOver: 'onPlayerOverSquad()', onOut: 'onPlayerOutOfSquad()', onDrop: 'onPlayerDroppedIntoSquad()'}">
       <h3>Squad</h3>
-        <div class="squad-player"
+        <div class="players-list squad-list"
           ng-repeat="player in selectedPlayers">
             <player player=player
               on-drag='onSelectedPlayerDragged(player)'
-              on-drop='onSelectedPlayerDropped(player)'
-              on-click='removePlayer(player)'>
+              on-drop='onSelectedPlayerDropped(player)'>
             </player>
         </div>
     </div>
