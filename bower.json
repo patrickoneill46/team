@@ -23,6 +23,8 @@
     "bootstrap": "~3.3.5",
     "angular-mocks": "^1.5.3",
     "moment": "^2.13.0",
-    "angular-moment": "^0.10.3"
+    "angular-moment": "^0.10.3",
+    "angular-dragdrop": "^1.0.13",
+    "jquery-ui": "^1.12.0"
   }
 }

@@ -17,6 +17,7 @@ angular.module('teamApp')
     $scope.selectedPlayers = [];
     $scope.teams = [];
     $scope.team;
+    $scope.selectedPlayer;
 
     $scope.getFixture = function() {
 
@@ -111,6 +112,28 @@ angular.module('teamApp')
         teamService.get(function (response) {
             $scope.teams = response;
         });
+    };
+
+    $scope.squadListHovered = function() {
+
+      console.log('squad list hovered');
+    };
+
+    $scope.onPlayerDroppedIntoSquad = function() {
+
+      console.log('player dropped');
+      $scope.selectedPlayers.push($scope.selectedPlayer);
+      $scope.selectedPlayer = null;
+    };
+
+    $scope.onPlayerOverSquad = function() {
+      console.log('onPlayerOverSquad');
+    };
+
+    $scope.onPlayerDragged = function (player) {
+
+      console.log('player dragged', player);
+      $scope.selectedPlayer = player;
     };
 
     $scope.getPlayers();

@@ -12,7 +12,8 @@ angular
   .module('teamApp', [
     'ngRoute',
     'ngResource',
-    'angularMoment'
+    'angularMoment',
+    'ngDragDrop'
   ])
   .config(function ($routeProvider) {
     $routeProvider
