@@ -9,7 +9,8 @@
                         {{fixture.teamName}}<span> vs </span>{{fixture.opposition}}
                     </div>
                     <div class="fixture-details row">
-                        <div class="fixture-date col-xs-12">{{fixture.date | amDateFormat:'dddd, MMMM Do YYYY'}}</div>
+                        <div class="fixture-date col-xs-10">{{fixture.date | amDateFormat:'dddd, MMMM Do YYYY'}}</div>
+                        <div class="delete-fixture-button btn btn-danger" ng-click="removeFixture($event, fixture)">Remove fixture</div>
                         <div class="fixture-kick-off-time col-xs-12">{{fixture.kickOffTime | amDateFormat:'dddd, MMMM Do YYYY'}}</div>
                         <div class="fixture-venue col-xs-12">{{fixture.venue}}</div>
                     </div>

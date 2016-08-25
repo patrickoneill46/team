@@ -40,9 +40,19 @@ angular.module('teamApp')
     };
 
     $scope.getTeams = function () {
-        teamService.get(function (response) {
-            $scope.teams = response;
-        });
+      teamService.get(function (response) {
+        $scope.teams = response;
+      });
+    };
+
+    $scope.removeFixture = function($event, fixture) {
+
+      $event.preventDefault();
+      fixturesService.removeFixture({
+        fixtureId: fixture._id
+      }, function (response) {
+        $scope.fixtures.splice($scope.fixtures.indexOf(fixture), 1);
+      });
     };
 
     $scope.getTeams();

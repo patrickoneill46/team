@@ -79,8 +79,6 @@ module.exports = function (app) {
 
     app.put('/fixtures/:fixtureId/update-selection', function(req, res) {
 
-        console.log(req.body, req.params, 'createSelection');
-
         Fixture.findByIdAndUpdate(req.params.fixtureId, {
             $set: {
                 squad: req.body.selection
@@ -96,5 +94,19 @@ module.exports = function (app) {
                 fixture: fixture
             });
         });
+    });
+
+    app.delete('/fixtures/:fixtureId', function(req, res) {
+
+      Fixture.findByIdAndRemove(req.params.fixtureId, function(err, fixture) {
+
+          if (err) {
+            res.status(503).send(err);
+          }
+          res.status(200).send({
+            status: 'deleted',
+            fixture: fixture
+          });
+      });
     });
 };
