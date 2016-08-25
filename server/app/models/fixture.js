@@ -28,6 +28,9 @@ var Fixture = new Schema({
     teamId: {
         type: String
     },
+    teamName: {
+      type: String
+    },
     opposition: {
         type: String
     },

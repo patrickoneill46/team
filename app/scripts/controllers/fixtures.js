@@ -8,6 +8,8 @@ angular.module('teamApp')
     function ($scope, fixturesService, teamService) {
 
     $scope.name = 'Fixtures';
+    $scope.newFixture = {};
+    $scope.CREATE_FIXTURE_STRING = 'Create Fixture';
 
     $scope.getFixtures = function () {
 
@@ -23,12 +25,19 @@ angular.module('teamApp')
 
     $scope.createFixture = function(form) {
 
+        var teamName = $scope.teams.find(function(team) {
+            return team._id === $scope.newFixture.teamId;
+        }).teamName;
+
         fixturesService.createFixture({
-            date: $scope.createFixtureDate,
-            kickoff: $scope.createFixtureKickoff,
-            location: $scope.createFixtureLocation,
-            mapsLink: $scope.createFixtureMapsLink,
-            meetTime: $scope.createFixtureMeetTime,
+            date: $scope.newFixture.date,
+            kickoff: $scope.newFixture.kickoff,
+            location: $scope.newFixture.location,
+            mapsLink: $scope.newFixture.mapsLink,
+            meetTime: $scope.newFixture.meetTime,
+            opposition: $scope.newFixture.opposition,
+            teamId: $scope.newFixture.teamId,
+            teamName: teamName
         }, function (response) {
 
             console.log(response);

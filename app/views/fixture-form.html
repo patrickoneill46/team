@@ -1,0 +1,42 @@
+<form name="updateFixtureForm" novalidate role="form" ng-submit="onSubmit()">
+    <div class="form-group col-xs-12 col-sm-6">
+        <label for="fixture-team">Team</label>
+        <select id="fixture-team" ng-options="team._id as team.teamName for team in teams" ng-model="fixture.teamId">
+        </select>
+    </div>
+    <div class="form-group col-xs-12 col-sm-6">
+        <label for="fixture-team">Opposition</label>
+        <input type="text" id="fixture-opposition" ng-model="fixture.opposition"/>
+    </div>
+    <div class="form-group col-xs-12 col-sm-6">
+        <label for="fixture-date">Date</label>
+        <input type="date" id="fixture-date" ng-model="fixture.date"/>
+    </div>
+    <div class="form-group col-xs-12 col-sm-6">
+        <label for="fixture-kick-off">Kick Off Time</label>
+        <input type="date" id="fixture-kick-off" ng-model="fixture.kickoff"/>
+    </div>
+    <div class="form-group col-xs-12 col-sm-6">
+        <label for="fixture-venue">Venue</label>
+        <input type="text" id="fixture-venue" ng-model="fixture.location"/>
+    </div>
+    <div class="form-group col-xs-12 col-sm-6">
+        <label for="fixture-meet-time">Meet Time</label>
+        <input type="date" id="fixture-meet-time" ng-model="fixture.meetTime"/>
+    </div>
+    <div class="form-group col-xs-12 col-sm-6">
+        <label for="fixture-maps-link">Maps Link</label>
+        <input type="text" id="fixture-maps-link" ng-model="fixture.mapsLink"/>
+    </div>
+    <div class="form-group col-xs-12">
+        <label for="fixture-description">Description</label>
+            <textarea class="form-control"
+                      name="fixture-description"
+                      id="fixture-description"
+                      ng-model="fixture.description">
+            </textarea>
+    </div>
+    <div class="form-group col-xs-12 col-sm-6">
+        <input type="submit" class="btn" value="{{submitText}}">
+    </div>
+</form>
