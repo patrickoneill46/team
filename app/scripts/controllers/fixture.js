@@ -20,12 +20,26 @@ angular.module('teamApp')
     $scope.selectedPlayer;
     $scope.revertDragged = 'invalid';
 
+    function getPlayerIndex(squad, squadPlayer) {
+      var selectedIndex = -1;
+      squad.find(function(player, index) {
+
+        if (squadPlayer._id === player._id) {
+          selectedIndex = index;
+        }
+      });
+      return selectedIndex;
+    };
+
     $scope.getFixture = function() {
 
         fixturesService.getOne({ fixtureId: $routeParams.fixtureId }, function(response) {
             console.log('service response', response);
             $scope.fixture = response.fixture;
             $scope.team = response.team;
+            if (response.fixture.squad) {
+              $scope.selectedPlayers = response.fixture.squad;
+            }
         });
     }
 
@@ -34,8 +48,8 @@ angular.module('teamApp')
         $scope.status = 'updating';
 
         fixturesService.updateSelection({
-            fixtureId: $routeParams.fixtureId
-        }, { selection: new Date() }, function(response) {
+            fixtureId: $routeParams.fixtureId,
+        }, { selection: $scope.selectedPlayers }, function(response) {
 
             console.log('selection update', response);
             $scope.fixture = response.fixture;
@@ -79,6 +93,7 @@ angular.module('teamApp')
         $scope.updateFixtureModel = angular.copy($scope.fixture);
         $scope.updateFixtureModel.date = new Date($scope.updateFixtureModel.date);
         $scope.updateFixtureModel.kickoff = new Date($scope.updateFixtureModel.kickoff);
+        $scope.updateFixtureModel.squad = angular.copy($scope.selectedPlayers);
         $scope.editMode = true;
     };
 
@@ -115,14 +130,16 @@ angular.module('teamApp')
         });
     };
 
-    $scope.squadListHovered = function() {
-
-      console.log('squad list hovered');
+    $scope.onSelectedPlayerDragged = function(player) {
+      $scope.selectedPlayer = player;
     };
 
     $scope.onPlayerDroppedIntoSquad = function(e) {
 
-      $scope.selectedPlayers.push($scope.selectedPlayer);
+      if (getPlayerIndex($scope.selectedPlayers, $scope.selectedPlayer) === -1) {
+        $scope.selectedPlayers.push($scope.selectedPlayer);
+      }
+      $scope.players[getPlayerIndex($scope.players, $scope.selectedPlayer)].selected = true;
       $scope.selectedPlayer = null;
       angular.element(e.target).removeClass('playerOverSquad');
     };
@@ -149,8 +166,9 @@ angular.module('teamApp')
 
     $scope.onSelectedPlayerDroppedIntoList = function (e) {
 
-      var selectedPlayerIndex = $scope.selectedPlayers.indexOf($scope.selectedPlayer);
-      if(selectedPlayerIndex) {
+      var selectedPlayerIndex = getPlayerIndex($scope.selectedPlayers, $scope.selectedPlayer);
+      if (selectedPlayerIndex !== -1) {
+        $scope.players[getPlayerIndex($scope.players, $scope.selectedPlayer)].selected = false;
         $scope.selectedPlayers.splice(selectedPlayerIndex, 1);
       }
       $scope.onSelectedPlayerOutOfList(e);

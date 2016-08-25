@@ -29,25 +29,34 @@
     <div class="col-xs-12 col-sm-6 players-list-container">
         <h3>Players</h3>
         <div class="players-list"
-          ng-repeat="player in players"
           data-drop="true"
           data-jqyoui-options
-          jqyoui-droppable="{onOver: 'onSelectedPlayerOverList()', onOut: 'onSelectedPlayerOutOfList()', onDrop: 'onSelectedPlayerDroppedIntoList()'}">
-          <player player=player on-drag='onPlayerDragged(player)'></player>
+          jqyoui-droppable="{
+            onOver: 'onSelectedPlayerOverList()',
+            onOut: 'onSelectedPlayerOutOfList()',
+            onDrop: 'onSelectedPlayerDroppedIntoList()'
+          }">
+          <div class="players-list-item" ng-repeat="player in players track by $index">
+            <player player=player on-drag='onPlayerDragged(player)' ng-class="{selected: players[$index].selected}"></player>
+          </div>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-6 squad-list"
-      data-drop="true"
-      data-jqyoui-options
-      jqyoui-droppable="{onOver: 'onPlayerOverSquad()', onOut: 'onPlayerOutOfSquad()', onDrop: 'onPlayerDroppedIntoSquad()'}">
+    <div class="col-xs-12 col-sm-6 squad-list-container">
       <h3>Squad</h3>
-        <div class="players-list squad-list"
-          ng-repeat="player in selectedPlayers">
-            <player player=player
-              on-drag='onSelectedPlayerDragged(player)'
-              on-drop='onSelectedPlayerDropped(player)'>
-            </player>
+      <div class="players-list squad-list"
+        data-drop="true"
+        data-jqyoui-options
+        jqyoui-droppable="{
+          onOver: 'onPlayerOverSquad()',
+          onOut: 'onPlayerOutOfSquad()',
+          onDrop: 'onPlayerDroppedIntoSquad()'}">
+        <div class="players-list-item" ng-repeat="player in selectedPlayers">
+          <player player=player
+            on-drag='onSelectedPlayerDragged(player)'
+            on-drop='onSelectedPlayerDropped(player)'>
+          </player>
         </div>
+      </div>
     </div>
 </div>
 <div class="row fixture-update-container" ng-if="editMode">

@@ -3,30 +3,10 @@
   border: 1px solid #000;
   border-radius: 2px;
   padding: 0 2px 2px 2px;
-
-  .players-list {
-
-    &.playerOverList {
-      background-color: blue;
-    }
-  }
-
-  .players-list-item {
-
-    border: 1px solid #000;
-    border-radius: 2px;
-    margin-bottom: 1px;
-
-    &:last {
-      margin-bottom: 0;
-    }
-    &:hover {
-      background-color: @hoverGrey;
-    }
-  }
 }
 
-.squad-list {
+.players-list {
+
   border: 1px solid #000;
   border-radius: 2px;
   padding: 0 2px 2px 2px;
@@ -34,5 +14,29 @@
 
   &.playerOverSquad {
     background-color: red;
+  }
+
+  &.playerOverList {
+    background-color: blue;
+  }
+
+  .players-list-item {
+
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: 0 2px 2px 2px;
+    padding: 4px 8px;
+
+    &:first-child {
+      margin-top: 5px;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &:hover {
+      background-color: @hoverGrey;
+      cursor: pointer;
+
+    }
   }
 }
