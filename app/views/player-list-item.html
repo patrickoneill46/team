@@ -1,2 +1,8 @@
-<div class="player-name">{{player.firstName}} {{player.lastName}}</div>
-<div class="player-position">{{player.position}}</div>
+<div class=class="players-list-item"
+   ng-click="onClick()"
+   data-drag="true"
+   data-jqyoui-options="{revert: true, revertDuration: 0}"
+   jqyoui-draggable="{onDrag: 'onDrag(player)'}">
+  <div class="player-name">{{player.firstName}} {{player.lastName}}</div>
+  <div class="player-position">{{player.position}}</div>
+</div>

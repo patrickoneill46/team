@@ -26,13 +26,10 @@
     </form>
 </div>
 <div class="row fixture-selection-container" ng-hide="editMode">
-    <div class="col-xs-12 col-sm-6 players-list">
+    <div class="col-xs-12 col-sm-6 players-list-container">
         <h3>Players</h3>
-        <div class="players-list-item" ng-repeat="player in players" ng-click="selectPlayer(player)"
-         data-drag="true"
-         data-jqyoui-options="{revert: 'valid'}"
-         jqyoui-draggable="{onDrag: 'onPlayerDragged(player)'}">
-            <player player=player></player>
+        <div class="players-list-item" ng-repeat="player in players">
+          <player player=player on-drag='onPlayerDragged(player)'></player>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 squad-list"
@@ -42,7 +39,11 @@
       <h3>Squad</h3>
         <div class="squad-player"
           ng-repeat="player in selectedPlayers">
-            <player player=player></player>
+            <player player=player
+              on-drag='onSelectedPlayerDragged(player)'
+              on-drop='onSelectedPlayerDropped(player)'
+              on-click='removePlayer(player)'>
+            </player>
         </div>
     </div>
 </div>

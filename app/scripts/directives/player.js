@@ -5,7 +5,9 @@ angular.module('teamApp').directive('player', function() {
     templateUrl: "views/player-list-item.html",
     require: '^ngModel',
     scope: {
-      player: '='
+      player: '=',
+      onDrag: '&',
+      onClick: '&'
     }
   }
 });

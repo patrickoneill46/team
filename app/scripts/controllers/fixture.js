@@ -18,6 +18,7 @@ angular.module('teamApp')
     $scope.teams = [];
     $scope.team;
     $scope.selectedPlayer;
+    $scope.revertDragged = 'invalid';
 
     $scope.getFixture = function() {
 
