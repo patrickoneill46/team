@@ -2,6 +2,7 @@ module.exports = function(grunt) {
     'use strict';
 
     require('load-grunt-tasks')(grunt);
+    grunt.loadNpmTasks('grunt-karma');
 
     grunt.initConfig({
       express: {
@@ -33,10 +34,21 @@ module.exports = function(grunt) {
                 files: ['less/*.less'],
                 tasks: ['less']
             }
+        },
+        karma: {
+            unit: {
+                configFile: 'app/test/unit/karma.conf.js',
+                browsers: ['PhantomJS'],
+                singleRun: true
+            }
         }
     });
 
     grunt.registerTask('default', [
         'less', 'watch'
+    ]);
+
+    grunt.registerTask('test', [
+        'karma'
     ]);
 }
