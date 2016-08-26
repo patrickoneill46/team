@@ -29,7 +29,7 @@ describe('Users: models', function () {
         newUser = {
             username: 'oneillp',
             password: '1234abc',
-            position: 'Back row',
+            position: 'OPENSIDE_FLANKER',
             secondaryPositions: secondaryPositions
         };
 
@@ -46,7 +46,6 @@ describe('Users: models', function () {
 
      User.create(newUser, function (err, createdUser) {
 
-       console.log('created user', err, createdUser);
        chai.assert.isNull(err);
        chai.assert.equal(newUser.username, createdUser.username);
        chai.assert.equal(newUser.password, createdUser.password);
@@ -82,8 +81,8 @@ describe('Users: models', function () {
     playerData.forEach(function(player, index) {
         User.create(player, function(err, createdUser){
            chai.assert.isNull(err);
-           if(++count == numPlayers -1) {
-            done();
+           if (++count === numPlayers) {
+             done();
            }
         });
     });

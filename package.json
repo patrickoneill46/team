@@ -4,7 +4,7 @@
   "description": "Team app",
   "main": "server/app.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha server/test/models/user.js",
+    "test": "./node_modules/mocha/bin/mocha server/test/models/*.js",
     "start": "node server/app/app.js"
   },
   "author": "Patrick O'Neill",

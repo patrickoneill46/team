@@ -2,76 +2,76 @@ module.exports = [
     {
         username: 'oneillp',
         password: '123abc',
-        position: 'Back row',
+        position: 'NUMBER_EIGHT',
     },
     {
         username: 'coustee',
         password: '123abc',
-        position: 'Back row',
+        position: 'OPENSIDE_FLANKER',
     },
     {
         username: 'standerc',
         password: '123abc',
-        position: 'Back row',
+        position: 'BLINDSIDE_FLANKER',
     },
     {
         username: 'houset',
         password: '123abc',
-        position: 'Second row',
+        position: 'SECOND_ROW',
     },
     {
         username: 'jacksonm',
         password: '123abc',
-        position: 'Second row',
+        position: 'SECOND_ROW',
     },
     {
         username: 'galkap',
         password: '123abc',
-        position: 'Loosehead',
+        position: 'LOOSEHEAD_PROP',
     },
     {
         username: 'selimb',
         password: '123abc',
-        position: 'Tighthead',
+        position: 'TIGHTHEAD_PROP',
     },
     {
         username: 'kittd',
         password: '123abc',
-        position: 'Hooker',
+        position: 'HOOKER',
     },
     {
         username: 'pittw',
         password: '123abc',
-        position: 'Out half',
+        position: 'OUT_HALF',
     },
     {
         username: 'atkinsonh',
         password: '123abc',
-        position: 'Scrum half',
+        position: 'SCRUM_HALF',
     },
     {
         username: 'atkins',
         password: '123abc',
-        position: 'Fullback',
+        position: 'FULL_BACK',
     },
     {
         username: 'kracjera',
         password: '123abc',
-        position: 'Centre',
+        position: 'INSIDE_CENTRE',
     },
     {
         username: 'caned',
         password: '123abc',
-        position: 'Centre',
+        position: 'OUTSIDE_CENTRE',
     },
     {
         username: 'obiw',
         password: '123abc',
-        position: 'Wing',
+        position: 'LEFT_WING',
     },
     {
         username: 'obiw',
         password: '123abc',
-        position: 'Wing',
+        position: 'RIGHT_WING',
     }
 ];
