@@ -20,6 +20,7 @@ angular.module('teamApp')
     $scope.selectedPlayer;
     $scope.revertDragged = 'invalid';
     $scope.selectionChanged = false;
+    $scope.updateFixtureModel = {};
 
     function getPlayerIndex(squad, squadPlayer) {
       var selectedIndex = -1;
@@ -80,6 +81,7 @@ angular.module('teamApp')
         }, function (response) {
 
             console.log(response.fixture);
+            $scope.updateFixtureModel = null;
             $scope.fixture = response.fixture;
             $scope.team = response.team;
             $scope.updateInProgress = false;
