@@ -1,3 +1,5 @@
+var devFlag = process.argv[process.argv.length -1] === '--dev' ? 'Chrome' : 'PhantomJS';
+
 module.exports = function(grunt) {
     'use strict';
 
@@ -38,8 +40,8 @@ module.exports = function(grunt) {
         karma: {
             unit: {
                 configFile: 'app/test/unit/karma.conf.js',
-                browsers: ['PhantomJS'],
-                singleRun: true
+                browsers: [ devFlag ? 'Chrome' : 'PhantomJS'],
+                singleRun: !devFlag
             }
         }
     });

@@ -22,7 +22,8 @@ angular.module('teamApp')
     $scope.selectionChanged = false;
     $scope.updateFixtureModel = {};
 
-    function getPlayerIndex(squad, squadPlayer) {
+    function getPlayerIndex (squad, squadPlayer) {
+
       var selectedIndex = -1;
       squad.find(function(player, index) {
 
@@ -33,17 +34,16 @@ angular.module('teamApp')
       return selectedIndex;
     };
 
-    $scope.getFixture = function() {
+    $scope.getFixture = function () {
 
         fixturesService.getOne({ fixtureId: $routeParams.fixtureId }, function(response) {
-            console.log('service response', response);
             $scope.fixture = response.fixture;
             $scope.team = response.team;
             if (response.fixture.squad) {
               $scope.selectedPlayers = response.fixture.squad;
             }
         });
-    }
+    };
 
     $scope.updateSelection = function () {
 
@@ -116,17 +116,6 @@ angular.module('teamApp')
             console.log(response);
             $scope.players = response.players;
         });
-    };
-
-    $scope.selectPlayer = function (player) {
-
-        if ($scope.selectedPlayers.indexOf(player) === -1) {
-            $scope.selectedPlayers.push(player);
-        }
-    };
-
-    $scope.removePlayer = function (player) {
-        $scope.selectedPlayers.splice($scope.selectedPlayers.indexOf(player), 1);
     };
 
     $scope.getTeams = function () {

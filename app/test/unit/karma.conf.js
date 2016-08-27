@@ -1,13 +1,15 @@
 module.exports = function(config) {
 
-    console.error('exporting karma config');
     config.set({
 
         basePath: '../../../',
-        frameworks: ['mocha', 'chai'],
-        browser: ['PhantomJS'],
+        frameworks: ['mocha', 'chai', 'sinon'],
+        browser: [
+          'PhantomJS'
+        ],
         logLevel: config.LOG_INFO,
         files: [
+            //lib scripts
             'bower_components/jquery/dist/jquery.js',
             'bower_components/jquery-ui/jquery-ui.js',
             'bower_components/angular/angular.js',
@@ -19,6 +21,7 @@ module.exports = function(config) {
             'bower_components/angular-dragdrop/src/angular-dragdrop.js',
             'bower_components/moment/moment.js',
 
+            //src scripts
             'app/test/unit/**/*.js',
             'app/scripts/*.js',
             'app/scripts/**/*.js'
